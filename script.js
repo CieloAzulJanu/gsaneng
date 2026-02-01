@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 function initHeaderScroll() {
     const header = document.querySelector('.header');
-    
+    if (!header) return;
+
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             header.classList.add('scrolled');
@@ -43,14 +44,15 @@ function initHeaderScroll() {
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    
+    if (!hamburger || !navLinks) return;
+
     hamburger.addEventListener('click', function() {
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
     });
     
     // 메뉴 링크 클릭 시 메뉴 닫기
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function() {
             navLinks.classList.remove('active');
             hamburger.classList.remove('active');
@@ -138,7 +140,7 @@ function initCountAnimation() {
 // ========================================
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.service-card, .value-card, .portfolio-item, .contact-item'
+        '.service-card, .value-card, .portfolio-item, .portfolio-card, .contact-item, .phone-item'
     );
     
     const observer = new IntersectionObserver((entries) => {
@@ -164,22 +166,20 @@ function initScrollAnimations() {
 // 스무스 스크롤
 // ========================================
 function initSmoothScroll() {
+    const header = document.querySelector('.header');
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            if (!targetElement) return;
+            e.preventDefault();
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = targetElement.offsetTop - headerHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
         });
     });
 }
