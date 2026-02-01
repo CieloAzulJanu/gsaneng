@@ -1262,21 +1262,27 @@ section {
 
 .phone-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .phone-item {
-    display: block;
-    background: var(--bg-light);
-    padding: 30px 20px;
-    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    padding: 32px 24px;
+    border-radius: 16px;
     text-align: center;
     transition: var(--transition);
     border: 2px solid transparent;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .phone-item:hover {
@@ -1578,6 +1584,11 @@ section {
 @media (max-width: 992px) {
     .phone-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .phone-grid .phone-item:last-child:nth-child(3) {
+        grid-column: 1 / -1;
+        max-width: 320px;
+        justify-self: center;
     }
 }
 

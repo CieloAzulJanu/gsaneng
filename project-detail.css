@@ -250,12 +250,13 @@
     line-height: 1.7;
 }
 
-/* 단계별 시공 사진 (작업 과정 내) */
+/* 단계별 시공 사진 (작업 과정 내) - 이미지 크기 제한으로 PC/웹 동일하게 표시 */
 .timeline-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 280px));
     gap: 15px;
     margin-top: 20px;
+    justify-content: start;
 }
 
 .timeline-gallery .gallery-item {
@@ -264,6 +265,7 @@
     overflow: hidden;
     aspect-ratio: 4/3;
     cursor: pointer;
+    max-width: 280px;
 }
 
 .timeline-gallery .gallery-item img {
@@ -271,6 +273,8 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    max-width: 100%;
+    display: block;
 }
 
 .timeline-gallery .gallery-item:hover img {
@@ -506,9 +510,14 @@
     }
     
     .timeline-gallery {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(140px, 240px));
         gap: 12px;
         margin-top: 16px;
+        justify-content: start;
+    }
+    
+    .timeline-gallery .gallery-item {
+        max-width: 240px;
     }
     
     .timeline-gallery .gallery-overlay span {
@@ -555,6 +564,13 @@
 @media (max-width: 480px) {
     .timeline-gallery {
         grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .timeline-gallery .gallery-item {
+        max-width: 100%;
     }
     
     .gallery-grid {
