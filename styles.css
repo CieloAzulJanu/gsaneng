@@ -1620,10 +1620,13 @@ section {
     .phone-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    /* 세 번째 연락처(창원 성산구)도 위 두 칸과 동일한 열 너비로 표시 */
     .phone-grid .phone-item:last-child:nth-child(3) {
         grid-column: 1 / -1;
-        max-width: 320px;
+        width: calc((100% - 24px) / 2);
+        max-width: none;
         justify-self: center;
+        box-sizing: border-box;
     }
 }
 
@@ -1674,6 +1677,12 @@ section {
     
     .phone-grid {
         grid-template-columns: 1fr;
+    }
+    /* 모바일: 세 연락처 박스 동일 크기(전체 너비) */
+    .phone-grid .phone-item:last-child:nth-child(3) {
+        width: 100%;
+        max-width: none;
+        justify-self: stretch;
     }
     
     .contact-item-large {
