@@ -134,6 +134,12 @@
     display: inline-block;
 }
 
+.process-intro {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
 .overview-content p {
     color: var(--text-light);
     font-size: 1.05rem;
@@ -244,7 +250,66 @@
     line-height: 1.7;
 }
 
-/* 시공 사진 갤러리 */
+/* 단계별 시공 사진 (작업 과정 내) */
+.timeline-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.timeline-gallery .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+}
+
+.timeline-gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.timeline-gallery .gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.timeline-gallery .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 54, 93, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.timeline-gallery .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.timeline-gallery .gallery-overlay i {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.timeline-gallery .gallery-overlay span {
+    color: var(--white);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0 8px;
+}
+
+/* 시공 사진 갤러리 (별도 섹션 - 사용 시) */
 .project-gallery {
     background: var(--white);
     border-radius: 20px;
@@ -440,6 +505,16 @@
         font-size: 1.8rem;
     }
     
+    .timeline-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+    }
+    
+    .timeline-gallery .gallery-overlay span {
+        font-size: 0.75rem;
+    }
+    
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -478,6 +553,10 @@
 }
 
 @media (max-width: 480px) {
+    .timeline-gallery {
+        grid-template-columns: 1fr;
+    }
+    
     .gallery-grid {
         grid-template-columns: 1fr;
     }

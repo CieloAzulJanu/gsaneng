@@ -86,7 +86,9 @@ function initCountAnimation() {
         });
     }
     
-    // Intersection Observer로 요소가 화면에 나타날 때 애니메이션 실행
+    // Intersection Observer: 통계 블록(.about-stats)이 화면에 보일 때 애니메이션 실행
+    // 모바일에서 .about 전체는 길어서 threshold 0.5에 도달하지 않을 수 있으므로,
+    // 통계 영역만 관찰하고 threshold를 낮춤
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !animated) {
@@ -94,11 +96,21 @@ function initCountAnimation() {
                 animateNumbers();
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 });
     
-    const aboutSection = document.querySelector('.about');
-    if (aboutSection) {
-        observer.observe(aboutSection);
+    const aboutStats = document.querySelector('.about-stats');
+    if (aboutStats) {
+        observer.observe(aboutStats);
+        // 모바일 등에서 통계가 이미 뷰포트 안에 있으면 한 번 확인 후 애니메이션 실행
+        function checkStatsInView() {
+            const rect = aboutStats.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (inView && !animated) {
+                animated = true;
+                animateNumbers();
+            }
+        }
+        setTimeout(checkStatsInView, 300);
     }
 }
 
