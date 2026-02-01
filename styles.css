@@ -1172,11 +1172,9 @@ section {
     position: relative;
 }
 
-/* 웹에서 연락처 3열 중앙 정렬 보장 */
+/* 연락처 섹션: 제목/부제/연락처 그룹 모두 중앙 정렬 */
 .contact .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
 .contact::before {
@@ -1192,13 +1190,8 @@ section {
 }
 
 .contact-content-center {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -1260,13 +1253,11 @@ section {
     color: var(--secondary-color);
 }
 
-/* 지역별 연락처 - 웹에서도 중앙 정렬 유지 */
+/* 지역별 연락처 - text-align + inline-grid로 웹/PC 모두 정중앙 고정 */
 .contact-phones {
     margin-bottom: 50px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
 }
 
 .contact-phones-title {
@@ -1277,30 +1268,20 @@ section {
     font-weight: 700;
 }
 
-/* 연락처 3개 그룹을 페이지 정중앙에 배치하는 래퍼 */
 .phone-grid-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    text-align: center;
 }
 
+/* inline-grid: 부모 text-align: center로 웹/PC 모두 정중앙 고정 */
 .phone-grid {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     width: 800px;
-    max-width: 100%;
+    max-width: calc(100% - 40px);
     box-sizing: border-box;
-}
-
-/* 웹 업로드 시에도 연락처 그룹 정중앙 고정 */
-#contact .phone-grid-wrapper {
-    display: flex !important;
-    justify-content: center !important;
-    width: 100% !important;
+    text-align: left;
 }
 
 .phone-item {
@@ -1537,21 +1518,22 @@ section {
 }
 
 .footer-update {
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     text-align: left;
 }
 
+/* 웹에서도 작고 은은하게 표시되도록 !important 적용 */
 .footer-update-label {
     display: block;
-    font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.22);
+    font-size: 0.55rem !important;
+    color: rgba(255, 255, 255, 0.15) !important;
     margin-bottom: 2px;
 }
 
 .footer-update-datetime {
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.6rem !important;
+    color: rgba(255, 255, 255, 0.18) !important;
 }
 
 .footer-bottom {
