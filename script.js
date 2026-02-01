@@ -66,8 +66,10 @@ function initCountAnimation() {
     let animated = false;
     
     function animateNumbers() {
+        if (animated) return;
+        animated = true;
         stats.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-target'));
+            const target = parseInt(stat.getAttribute('data-target'), 10);
             const duration = 2000;
             const increment = target / (duration / 16);
             let current = 0;
@@ -86,32 +88,49 @@ function initCountAnimation() {
         });
     }
     
-    // Intersection Observer: 통계 블록(.about-stats)이 화면에 보일 때 애니메이션 실행
-    // 모바일에서 .about 전체는 길어서 threshold 0.5에 도달하지 않을 수 있으므로,
-    // 통계 영역만 관찰하고 threshold를 낮춤
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                animateNumbers();
+    function setFinalValues() {
+        stats.forEach(stat => {
+            const target = stat.getAttribute('data-target');
+            if (target != null && stat.textContent === '0') {
+                stat.textContent = target;
             }
         });
-    }, { threshold: 0.2 });
+    }
+    
+    function checkStatsInView() {
+        const aboutStats = document.querySelector('.about-stats');
+        if (!aboutStats || animated) return;
+        const rect = aboutStats.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) animateNumbers();
+    }
     
     const aboutStats = document.querySelector('.about-stats');
-    if (aboutStats) {
-        observer.observe(aboutStats);
-        // 모바일 등에서 통계가 이미 뷰포트 안에 있으면 한 번 확인 후 애니메이션 실행
-        function checkStatsInView() {
-            const rect = aboutStats.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-            if (inView && !animated) {
-                animated = true;
-                animateNumbers();
-            }
+    if (!aboutStats) return;
+    
+    // Intersection Observer: 통계 블록이 화면에 들어오면 애니메이션 실행
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) animateNumbers();
+        });
+    }, { threshold: 0.1, rootMargin: '50px' });
+    
+    observer.observe(aboutStats);
+    
+    // 모바일 대응: 여러 시점에 뷰포트 체크 (스크롤/레이아웃 지연 대비)
+    setTimeout(checkStatsInView, 300);
+    setTimeout(checkStatsInView, 800);
+    setTimeout(checkStatsInView, 1500);
+    
+    // 최종 안전장치: 3초 후에도 0이면 최종값(30, 500, 100)으로 표시
+    setTimeout(function() {
+        if (!animated) {
+            animated = true;
+            setFinalValues();
+        } else {
+            setFinalValues();
         }
-        setTimeout(checkStatsInView, 300);
-    }
+    }, 3200);
 }
 
 // ========================================

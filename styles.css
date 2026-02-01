@@ -1187,6 +1187,10 @@ section {
 .contact-content-center {
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 /* 본사 주소 */
@@ -1247,9 +1251,13 @@ section {
     color: var(--secondary-color);
 }
 
-/* 지역별 연락처 */
+/* 지역별 연락처 - 웹에서도 중앙 정렬 유지 */
 .contact-phones {
     margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contact-phones-title {
@@ -1265,7 +1273,9 @@ section {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .phone-item {
