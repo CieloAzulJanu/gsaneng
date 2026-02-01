@@ -510,8 +510,9 @@
         font-size: 1.8rem;
     }
     
+    /* 시공실적 작업 과정 이미지: 웹(PC/모바일) 동일하게 3열 유지 */
     .project-process .timeline-gallery {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
         gap: 12px;
         margin-top: 16px;
     }
@@ -558,8 +559,9 @@
 }
 
 @media (max-width: 480px) {
+    /* 시공실적 작업 과정 이미지: 3열 유지 (GitHub Pages 웹과 동일 표시) */
     .project-process .timeline-gallery {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(3, 1fr) !important;
     }
     
     .gallery-grid {
