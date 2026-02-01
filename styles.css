@@ -1680,17 +1680,18 @@ section {
         width: 100%;
         max-width: 100%;
     }
-    /* 모바일: 부산/울산/창원 성산구 연락처 박스 동일 크기 (GitHub Pages 호환) */
-    .phone-grid .phone-item {
-        width: 100%;
-        min-width: 0;
-        max-width: none;
+    /* 모바일: 부산·울산·창원 성산구 연락처 박스 동일 크기 (992px 규칙 무시, GitHub Pages 호환) */
+    .contact-phones .phone-grid .phone-item {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
         box-sizing: border-box;
     }
-    .phone-grid .phone-item:last-child:nth-child(3) {
-        width: 100%;
-        max-width: none;
-        justify-self: stretch;
+    .contact-phones .phone-grid .phone-item:last-child:nth-child(3) {
+        grid-column: auto;
+        width: 100% !important;
+        max-width: none !important;
+        justify-self: stretch !important;
     }
     
     .contact-item-large {
