@@ -1172,6 +1172,13 @@ section {
     position: relative;
 }
 
+/* 웹에서 연락처 3열 중앙 정렬 보장 */
+.contact .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .contact::before {
     content: '';
     position: absolute;
@@ -1190,7 +1197,9 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    box-sizing: border-box;
 }
 
 /* 본사 주소 */
@@ -1274,6 +1283,12 @@ section {
     gap: 24px;
     max-width: 800px;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 웹 업로드 시 연락처 3열 중앙 정렬 보장 */
+#contact .phone-grid {
     margin-left: auto;
     margin-right: auto;
 }

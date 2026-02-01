@@ -251,12 +251,13 @@
 }
 
 /* 단계별 시공 사진 (작업 과정 내) - 3열 배열, PC/웹 동일 표시 */
-.timeline-gallery {
+.project-process .timeline-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 15px;
     margin-top: 20px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .timeline-gallery .gallery-item {
@@ -509,8 +510,8 @@
         font-size: 1.8rem;
     }
     
-    .timeline-gallery {
-        grid-template-columns: repeat(2, 1fr);
+    .project-process .timeline-gallery {
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px;
         margin-top: 16px;
     }
@@ -557,8 +558,8 @@
 }
 
 @media (max-width: 480px) {
-    .timeline-gallery {
-        grid-template-columns: 1fr;
+    .project-process .timeline-gallery {
+        grid-template-columns: 1fr !important;
     }
     
     .gallery-grid {
