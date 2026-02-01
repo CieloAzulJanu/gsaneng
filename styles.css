@@ -1277,20 +1277,30 @@ section {
     font-weight: 700;
 }
 
+/* 연락처 3개 그룹을 페이지 정중앙에 배치하는 래퍼 */
+.phone-grid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .phone-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    max-width: 800px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 800px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-/* 웹 업로드 시 연락처 3열 중앙 정렬 보장 */
-#contact .phone-grid {
-    margin-left: auto;
-    margin-right: auto;
+/* 웹 업로드 시에도 연락처 그룹 정중앙 고정 */
+#contact .phone-grid-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
 }
 
 .phone-item {
@@ -1527,21 +1537,21 @@ section {
 }
 
 .footer-update {
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     text-align: left;
 }
 
 .footer-update-label {
     display: block;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 4px;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.22);
+    margin-bottom: 2px;
 }
 
 .footer-update-datetime {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .footer-bottom {
