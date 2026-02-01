@@ -1526,9 +1526,27 @@ section {
     transform: translateY(-3px);
 }
 
+.footer-update {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: left;
+}
+
+.footer-update-label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 4px;
+}
+
+.footer-update-datetime {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .footer-bottom {
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
